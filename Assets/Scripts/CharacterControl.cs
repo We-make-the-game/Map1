@@ -20,7 +20,7 @@ public class CharacterControl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
-        playerAni = GameObject.Find("player/obj").GetComponent<Animator>();
+        playerAni = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,11 +35,11 @@ public class CharacterControl : MonoBehaviour
         CheckOnGround();
         Jump();
         rb.velocity = new Vector2(moveX * speed, rb.velocity.y);
-        if (moveX < 0)
+        if (moveX > 0)
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (moveX > 0)
+        else if (moveX < 0)
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
